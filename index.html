@@ -45,9 +45,6 @@ img {
     max-height:85vh;
     object-fit:contain;
 
-    box-shadow:
-        0 0 50px rgba(0,0,0,0.7);
-
     border-radius:4px;
 }
 
@@ -57,10 +54,39 @@ figcaption {
     font-size:0.9rem;
 }
 
+#sound-button{
+
+    position:fixed;
+
+    bottom:20px;
+    right:20px;
+
+    background:rgba(0,0,0,0.6);
+
+    color:#ddd;
+
+    border:1px solid #444;
+
+    padding:10px 14px;
+
+    cursor:pointer;
+
+    border-radius:4px;
+}
+
 </style>
 </head>
 
 <body>
+
+<audio id="ambience" loop>
+    <source src="audio/session.wav"
+            type="audio/wav">
+</audio>
+
+<button id="sound-button">
+    son
+</button>
 
 <div class="gallery">
 
@@ -120,6 +146,36 @@ figcaption {
     </figure>
     
 </div>
+
+<script>
+
+/* JavaScript */
+
+const audio =
+    document.getElementById("ambience");
+
+const button =
+    document.getElementById("sound-button");
+
+button.addEventListener("click", () => {
+
+    if(audio.paused){
+
+        audio.play();
+
+        button.textContent = "mute";
+
+    } else {
+
+        audio.pause();
+
+        button.textContent = "son";
+
+    }
+
+});
+
+</script>
 
 </body>
 </html>
