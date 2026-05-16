@@ -1,8 +1,11 @@
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
@@ -44,8 +47,6 @@ img {
     width:min(92vw, 1200px);
     max-height:85vh;
     object-fit:contain;
-
-    border-radius:4px;
 }
 
 figcaption {
@@ -54,7 +55,7 @@ figcaption {
     font-size:0.9rem;
 }
 
-#sound-button{
+#sound-button {
 
     position:fixed;
 
@@ -71,10 +72,65 @@ figcaption {
 
     cursor:pointer;
 
+    font-size:0.85rem;
+
     border-radius:4px;
+
+    z-index:1000;
+}
+
+#license {
+
+    padding:4rem 2rem;
+
+    text-align:center;
+
+    opacity:0.35;
+
+    font-size:0.8rem;
+}
+
+#license a {
+    color:#999;
+    text-decoration:none;
+}
+
+#license a:hover {
+    color:#ddd;
+}
+
+#overlay {
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,0.95);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:opacity 0.2s ease;
+
+    z-index:2000;
+}
+
+#overlay.visible {
+    opacity:1;
+    pointer-events:auto;
+}
+
+#overlay img {
+    max-width:96vw;
+    max-height:96vh;
+
+    object-fit:contain;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -90,48 +146,19 @@ figcaption {
 
 <div class="gallery">
 
+
     <figure class="fade">
-        <img src="photos/photo1.jpg" alt="photo1">
-        <figcaption>22 March 2026</figcaption>
+        <img src="photos/DSCF0455.jpg" alt="DSCF0455">
+        <figcaption>16 May 2026</figcaption>
     </figure>
     
     <figure class="fade">
-        <img src="photos/ADSCF0066A.jpg" alt="ADSCF0066A">
-        <figcaption>06 April 2026</figcaption>
+        <img src="photos/photo7.jpg" alt="photo7">
+        <figcaption>10 May 2026</figcaption>
     </figure>
     
     <figure class="fade">
-        <img src="photos/photo3.jpg" alt="photo3">
-        <figcaption>26 April 2026</figcaption>
-    </figure>
-    
-    <figure class="fade">
-        <img src="photos/P1000718a.jpg" alt="P1000718a">
-        <figcaption>26 April 2026</figcaption>
-    </figure>
-    
-    <figure class="fade">
-        <img src="photos/P1000746a.jpg" alt="P1000746a">
-        <figcaption>26 April 2026</figcaption>
-    </figure>
-    
-    <figure class="fade">
-        <img src="photos/P1000765a.jpg" alt="P1000765a">
-        <figcaption>26 April 2026</figcaption>
-    </figure>
-    
-    <figure class="fade">
-        <img src="photos/DSCF0447A.jpg" alt="DSCF0447A">
-        <figcaption>09 May 2026</figcaption>
-    </figure>
-    
-    <figure class="fade">
-        <img src="photos/photo2.jpg" alt="photo2">
-        <figcaption>09 May 2026</figcaption>
-    </figure>
-    
-    <figure class="fade">
-        <img src="photos/photo4.jpg" alt="photo4">
+        <img src="photos/photo6.jpg" alt="photo6">
         <figcaption>10 May 2026</figcaption>
     </figure>
     
@@ -141,15 +168,70 @@ figcaption {
     </figure>
     
     <figure class="fade">
-        <img src="photos/photo6.jpg" alt="photo6">
+        <img src="photos/photo4.jpg" alt="photo4">
         <figcaption>10 May 2026</figcaption>
     </figure>
     
+    <figure class="fade">
+        <img src="photos/photo2.jpg" alt="photo2">
+        <figcaption>09 May 2026</figcaption>
+    </figure>
+    
+    <figure class="fade">
+        <img src="photos/DSCF0447A.jpg" alt="DSCF0447A">
+        <figcaption>09 May 2026</figcaption>
+    </figure>
+    
+    <figure class="fade">
+        <img src="photos/P1000765a.jpg" alt="P1000765a">
+        <figcaption>26 April 2026</figcaption>
+    </figure>
+    
+    <figure class="fade">
+        <img src="photos/P1000746a.jpg" alt="P1000746a">
+        <figcaption>26 April 2026</figcaption>
+    </figure>
+    
+    <figure class="fade">
+        <img src="photos/P1000718a.jpg" alt="P1000718a">
+        <figcaption>26 April 2026</figcaption>
+    </figure>
+    
+    <figure class="fade">
+        <img src="photos/photo3.jpg" alt="photo3">
+        <figcaption>26 April 2026</figcaption>
+    </figure>
+    
+    <figure class="fade">
+        <img src="photos/ADSCF0066A.jpg" alt="ADSCF0066A">
+        <figcaption>06 April 2026</figcaption>
+    </figure>
+    
+    <figure class="fade">
+        <img src="photos/photo1.jpg" alt="photo1">
+        <figcaption>22 March 2026</figcaption>
+    </figure>
+    
+
+<footer id="license">
+
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+
+CC BY-NC-SA 4.0
+
+</a>
+
+</footer>
+
+</div>
+
+<div id="overlay">
+    <img id="overlay-img">
 </div>
 
 <script>
 
-/* JavaScript */
+/* audio */
 
 const audio =
     document.getElementById("ambience");
@@ -159,7 +241,7 @@ const button =
 
 button.addEventListener("click", () => {
 
-    if(audio.paused){
+    if(audio.paused) {
 
         audio.play();
 
@@ -172,6 +254,34 @@ button.addEventListener("click", () => {
         button.textContent = "son";
 
     }
+
+});
+
+/* plein écran image */
+
+const overlay =
+    document.getElementById("overlay");
+
+const overlayImg =
+    document.getElementById("overlay-img");
+
+document
+.querySelectorAll("figure img")
+.forEach(img => {
+
+    img.addEventListener("click", () => {
+
+        overlayImg.src = img.src;
+
+        overlay.classList.add("visible");
+
+    });
+
+});
+
+overlay.addEventListener("click", () => {
+
+    overlay.classList.remove("visible");
 
 });
 
